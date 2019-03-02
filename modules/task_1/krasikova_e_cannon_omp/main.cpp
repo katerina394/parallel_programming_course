@@ -1,5 +1,6 @@
-#include <ctime>
+// Copyright 2019 Krasikova Ekaterina
 #include <stdlib.h>
+#include <ctime>
 #include <iostream>
 void addMultOfBlocks(double *A, double *B, double* C, int N, int lda) {
     for (int i = 0; i < N; ++i) {
