@@ -23,9 +23,10 @@ void cannon(double *A, double *B, double* C, int n, int q) {
         for (int j = 0; j < q; ++j) {
             clearMatrix(&C[(i*n + j)*blocksize], blocksize, n);
             for (int k = 0; k < q; ++k) {
-                addMultOfBlocks(&A[(i*n + (j+i+k)%q)*blocksize], &B[(((i+j+k)%q)*n + j)*blocksize], &C[(i*n + j)*blocksize], blocksize, n);
+                addMultOfBlocks(&A[(i*n + (j+i+k)%q)*blocksize],
+                    &B[(((i+j+k)%q)*n + j)*blocksize],
+                    &C[(i*n + j)*blocksize], blocksize, n);
             }
-            
         }
     }
 }
@@ -43,8 +44,8 @@ int main(int argc, char** argv) {
     C2 = new double[n*n];
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            A[i*n + j] = rand() % 10;
-            B[i*n + j] = rand() % 10;
+            A[i*n + j] = rand_r() % 10;
+            B[i*n + j] = rand_r() % 10;
             C1[i*n + j] = 0.0;
         }
     }
