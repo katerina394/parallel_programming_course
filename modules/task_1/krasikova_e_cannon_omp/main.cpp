@@ -55,7 +55,7 @@ int main(int argc, char** argv) {
     double s = 0;
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            if (s < abs(C1[i*n + j] - C2[i*n + j])) s = abs(C1[i*n + j] - C2[i*n + j]);
+            if (s < std::abs(C1[i*n + j] - C2[i*n + j])) s = std::abs(C1[i*n + j] - C2[i*n + j]);
         }
     }
     std::cout << s;
