@@ -1,5 +1,6 @@
 // Copyright 2019 Krasikova Ekaterina
 #include <stdlib.h>
+#include <random>
 #include <ctime>
 #include <iostream>
 void addMultOfBlocks(double *A, double *B, double* C, int N, int lda) {
@@ -32,8 +33,9 @@ void cannon(double *A, double *B, double* C, int n, int q) {
     }
 }
 int main(int argc, char** argv) {
+    std::uniform_real_distribution<double> unif(0, 10);
+    std::default_random_engine re;
     int n = 4, q = 2;
-    srand(static_cast<unsigned int>(time(NULL)));
     if (argc == 3) {
         n = atoi(argv[1]);
         q = atoi(argv[2]);
@@ -45,8 +47,8 @@ int main(int argc, char** argv) {
     C2 = new double[n*n];
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            A[i*n + j] = std::rand() % 10;
-            B[i*n + j] = std::rand() % 10;
+            A[i*n + j] = unif(re);
+            B[i*n + j] = unif(re);
             C1[i*n + j] = 0.0;
         }
     }
