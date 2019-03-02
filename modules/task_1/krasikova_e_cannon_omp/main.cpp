@@ -45,8 +45,8 @@ int main(int argc, char** argv) {
     C2 = new double[n*n];
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            A[i*n + j] = rand_r() % 10;
-            B[i*n + j] = rand_r() % 10;
+            A[i*n + j] = std::rand() % 10;
+            B[i*n + j] = std::rand() % 10;
             C1[i*n + j] = 0.0;
         }
     }
