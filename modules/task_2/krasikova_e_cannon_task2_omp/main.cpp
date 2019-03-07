@@ -84,8 +84,8 @@ int main(int argc, char** argv) {
             if (s < fabs(C1[i*n + j] - C2[i*n + j])) s = fabs(C1[i*n + j] - C2[i*n + j]);
         }
     }
-    std::cout << "the maximum difference between results of matrix " <<
-        "multiplication(trivial and sequential cannon): " << s << '\n';
+    std::cout << "the maximum difference between results of matrix" <<
+        " multiplication(trivial and sequential cannon): " << s << '\n';
     t1 = omp_get_wtime();
     cannonOmp(A, B, C1, n, q);
     t2 = omp_get_wtime();
