@@ -7,8 +7,6 @@
 #include "tbb/task_scheduler_init.h"
 #include "tbb/blocked_range2d.h"
 #include "tbb/parallel_for.h"
-using tbb::blocked_range2d;
-using tbb::parallel_for;
 void addMultOfBlocks(double *A, double *B, double* C, int N, int lda) {
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
@@ -31,7 +29,7 @@ class BlocksMultiplicator {
  public:
     BlocksMultiplicator(double *a, double *b, double *c,
         int _n, int _q) : A(a), B(b), C(c), n(_n), q(_q) {}
-    void operator()(const blocked_range2d<int>& r) const {
+    void operator()(const tbb::blocked_range2d<int>& r) const {
         int blocksize = n / q;
         for (int i = r.rows().begin(); i < r.rows().end(); ++i) {
             for (int j = r.cols().begin(); j < r.cols().end(); ++j) {
@@ -59,8 +57,8 @@ void cannon(double *A, double *B, double* C, int n, int q) {
     }
 }
 void cannonTbb(double *A, double *B, double* C, int n, int q, int grainSize) {
-    task_scheduler_init init;
-    parallel_for(blocked_range2d<int>(0, q, grainSize, 0, q, grainSize),
+    tbb::task_scheduler_init init;
+    tbb::parallel_for(tbb::blocked_range2d<int>(0, q, grainSize, 0, q, grainSize),
         BlocksMultiplicator(A, B, C, n, q));
 }
 int main(int argc, char** argv) {
